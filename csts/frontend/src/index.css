@@ -1,0 +1,7 @@
+
+/* This directive includes Tailwind's base styles (like resets and browser normalization). */
+@tailwind base;
+/* This directive includes Tailwind's component classes (e.g., for buttons, forms). */
+@tailwind components;
+/* This directive includes Tailwind's utility classes (e.g., text-center, p-4). */
+@tailwind utilities;

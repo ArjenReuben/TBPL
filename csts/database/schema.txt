@@ -1,0 +1,65 @@
+
+-- Client Support Ticketing System Database Schema
+-- This schema is designed for a MySQL database.
+
+-- Unified table for storing all user types (Clients, Staff, Admins)
+CREATE TABLE Users (
+    -- UserID is the primary key, auto-incrementing for each new user.
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    -- The user's full name. Cannot be null.
+    Name VARCHAR(255) NOT NULL,
+    -- The user's email address. Must be unique across all users. Cannot be null.
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    -- The user's password. In a production environment, this should ALWAYS be hashed.
+    Password VARCHAR(255) NOT NULL,
+    -- The user's role in the system, restricted to 'Client', 'Staff', or 'Admin'. Cannot be null.
+    Role ENUM('Client', 'Staff', 'Admin') NOT NULL,
+    -- A flexible field: for Clients, this is their company name. For Staff, it can be their job title.
+    Company VARCHAR(255)
+);
+
+-- Table for storing support tickets
+CREATE TABLE Tickets (
+    -- TicketID is the primary key, auto-incrementing for each new ticket.
+    TicketID INT PRIMARY KEY AUTO_INCREMENT,
+    -- Foreign key linking to the UserID of the client who created the ticket. Cannot be null.
+    ClientID INT NOT NULL,
+    -- A short summary of the ticket's issue. Cannot be null.
+    Issue VARCHAR(500) NOT NULL,
+    -- A detailed description of the ticket's issue.
+    Description TEXT,
+    -- The timestamp when the ticket was created. Defaults to the current time.
+    CreatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -- The priority level of the ticket. Cannot be null.
+    Priority ENUM('Low', 'Medium', 'High', 'Urgent') NOT NULL,
+    -- The current status of the ticket. Cannot be null.
+    Status ENUM('Open', 'In Progress', 'Resolved', 'Closed') NOT NULL,
+    -- Foreign key linking to the UserID of the staff member assigned to the ticket. Can be null.
+    AssignedStaffID INT,
+    -- A boolean flag to indicate if there's a new update for the client to see.
+    ClientHasUnreadUpdate BOOLEAN DEFAULT FALSE,
+    -- A flag to record the client's feedback on whether the issue was resolved. Can be NULL (pending), TRUE, or FALSE.
+    IsResolvedByClient BOOLEAN,
+    -- Defines the foreign key constraint for ClientID, linking to the Users table.
+    FOREIGN KEY (ClientID) REFERENCES Users(UserID),
+    -- Defines the foreign key constraint for AssignedStaffID, linking to the Users table.
+    FOREIGN KEY (AssignedStaffID) REFERENCES Users(UserID)
+);
+
+-- Table for storing updates and comments on tickets
+CREATE TABLE Ticket_Updates (
+    -- UpdateID is the primary key, auto-incrementing for each new update.
+    UpdateID INT PRIMARY KEY AUTO_INCREMENT,
+    -- Foreign key linking to the TicketID this update belongs to. Cannot be null.
+    TicketID INT NOT NULL,
+    -- Foreign key linking to the UserID of the author (client or staff) of the update. Cannot be null.
+    AuthorID INT NOT NULL,
+    -- The text content of the update note. Cannot be null.
+    Note TEXT NOT NULL,
+    -- The timestamp when the update was created. Defaults to the current time.
+    Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -- Defines the foreign key constraint for TicketID, linking to the Tickets table.
+    FOREIGN KEY (TicketID) REFERENCES Tickets(TicketID),
+    -- Defines the foreign key constraint for AuthorID, linking to the Users table.
+    FOREIGN KEY (AuthorID) REFERENCES Users(UserID)
+);

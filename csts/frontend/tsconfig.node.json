@@ -1,0 +1,20 @@
+
+{
+  // This configuration is part of a composite project setup.
+  "compilerOptions": {
+    // Enables building this project as part of a larger project.
+    "composite": true,
+    // Skip type checking of declaration files.
+    "skipLibCheck": true,
+    // Use the latest ECMAScript module system.
+    "module": "ESNext",
+    // Use the 'bundler' module resolution strategy.
+    "moduleResolution": "bundler",
+    // Allow default imports from modules with no default export.
+    "allowSyntheticDefaultImports": true,
+    // Enable all strict type-checking options.
+    "strict": true
+  },
+  // Specifies which files are part of this specific configuration.
+  "include": ["vite.config.ts"]
+}

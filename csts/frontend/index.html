@@ -1,0 +1,29 @@
+
+<!-- This is the document type declaration, which tells the browser that this is an HTML5 document. -->
+<!DOCTYPE html>
+<!-- The root html element, with the language attribute set to English. -->
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the document, UTF-8 is standard. -->
+    <meta charset="UTF-8" />
+    <!-- Sets the favicon for the website, which is the small icon in the browser tab. -->
+    <link rel="icon" type="image/png" href="/nh-icon.png" />
+    <!-- Configures the viewport to ensure the site is responsive and scales correctly on all devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- The title of the web page, displayed in the browser tab. -->
+    <title>New Horizons | Support Desk</title>
+    <!-- Preconnects to the Google Fonts server for faster font loading. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Preconnects to the Google Fonts static content server. -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Imports the 'Poppins' font family from Google Fonts with various weights. -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<!-- The body of the HTML document, with a default background color from Tailwind. -->
+<body class="bg-brand-light">
+    <!-- The root div element where the React application will be mounted. -->
+    <div id="root"></div>
+    <!-- The main script for the application, specified as a module. Vite will inject the bundled JavaScript here during development and build processes. -->
+    <script type="module" src="/src/index.tsx"></script>
+</body>
+</html>

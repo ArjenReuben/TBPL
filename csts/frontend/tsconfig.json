@@ -1,0 +1,43 @@
+
+{
+  "compilerOptions": {
+    // Set the JavaScript version for the output code (ECMAScript 2020).
+    "target": "ES2020",
+    // Use the standard way of defining class fields.
+    "useDefineForClassFields": true,
+    // Specify the standard library files to be included in the compilation.
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    // Specify the module system for the output code (ESNext allows for modern features like dynamic import).
+    "module": "ESNext",
+    // Skip type checking of all declaration files (*.d.ts).
+    "skipLibCheck": true,
+
+    /* Bundler mode settings */
+    // Use the 'bundler' module resolution strategy, which is optimized for modern bundlers like Vite.
+    "moduleResolution": "bundler",
+    // Allow importing .ts and .tsx files without the extension.
+    "allowImportingTsExtensions": true,
+    // Allow importing JSON modules.
+    "resolveJsonModule": true,
+    // Ensures that each file can be safely transpiled without relying on other imports.
+    "isolatedModules": true,
+    // Do not emit output files (the bundler handles this).
+    "noEmit": true,
+    // Specify the JSX factory to use: 'react-jsx' for the new JSX transform.
+    "jsx": "react-jsx",
+
+    /* Linting settings */
+    // Enable all strict type-checking options.
+    "strict": true,
+    // Report errors on unused local variables.
+    "noUnusedLocals": true,
+    // Report errors on unused parameters in functions.
+    "noUnusedParameters": true,
+    // Report an error for fallthrough cases in switch statements.
+    "noFallthroughCasesInSwitch": true
+  },
+  // An array of files and directories to include in the compilation. Here, it's the 'src' directory.
+  "include": ["src"],
+  // A way to structure a large project by referencing other tsconfig.json files.
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
